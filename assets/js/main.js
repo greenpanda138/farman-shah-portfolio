@@ -199,3 +199,35 @@
     });
   });
 })();
+
+/* ---------- 3D tilt cards ---------- */
+(function () {
+  "use strict";
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var els = document.querySelectorAll(".card, .work-card, .stat");
+  els.forEach(function (el) {
+    var raf = null;
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        var rx = (0.5 - py) * 10;
+        var ry = (px - 0.5) * 12;
+        el.style.transform =
+          "perspective(900px) rotateX(" + rx.toFixed(2) + "deg)" +
+          " rotateY(" + ry.toFixed(2) + "deg) translateY(-4px)";
+        el.style.setProperty("--gx", (px * 100).toFixed(1) + "%");
+        el.style.setProperty("--gy", (py * 100).toFixed(1) + "%");
+        el.classList.add("tilting");
+      });
+    });
+    el.addEventListener("pointerleave", function () {
+      if (raf) cancelAnimationFrame(raf);
+      el.classList.remove("tilting");
+      el.style.transform = "";
+    });
+  });
+})();

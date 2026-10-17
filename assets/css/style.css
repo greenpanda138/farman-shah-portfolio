@@ -485,3 +485,32 @@ footer ul a:hover { color: var(--accent); }
   color: #1a1205; border-color: transparent;
 }
 .work-card.hide { display: none; }
+
+/* ============================================================
+   3D upgrade — interactive hero scene + 3D tilt cards
+   ============================================================ */
+.hero { overflow: hidden; }
+#hero3d {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; }
+
+/* 3D tilt: cards rotate in perspective toward the cursor */
+.card, .work-card, .stat { transform-style: preserve-3d; }
+.card::after, .work-card::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(520px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(251, 191, 36, 0.10), transparent 45%);
+  opacity: 0; transition: opacity 0.35s ease; pointer-events: none;
+}
+.card.tilting::after, .work-card.tilting::after { opacity: 1; }
+.card.tilting, .work-card.tilting, .stat.tilting {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hero3d { display: none; }
+}

@@ -162,6 +162,62 @@
   </div>
 </section>
 
+<!-- ============ LIVE DEMO ============ -->
+<section class="section" id="live-demo">
+  <div class="container">
+    <div class="center reveal">
+      <span class="eyebrow">Try it live</span>
+      <h2 class="section-title">A page, built <span class="hl">in front of you</span></h2>
+      <p class="section-sub">No case-study screenshots here. Pick a business, change the layout, and watch a landing page rebuild itself — this is the work, not a description of it. Demo examples only, not clients.</p>
+    </div>
+
+    <div class="demo reveal" id="demo" style="margin-top:48px">
+      <div class="demo-controls">
+        <div class="demo-group" role="group" aria-label="Demo business">
+          <span class="demo-label">Business</span>
+          <button type="button" class="demo-btn on" data-demo-business="bakery" aria-pressed="true">Bakery</button>
+          <button type="button" class="demo-btn" data-demo-business="barber" aria-pressed="false">Barbershop</button>
+          <button type="button" class="demo-btn" data-demo-business="gym" aria-pressed="false">Gym</button>
+        </div>
+        <div class="demo-group" role="group" aria-label="Demo layout">
+          <span class="demo-label">Layout</span>
+          <button type="button" class="demo-btn on" data-demo-layout="left" aria-pressed="true">Left</button>
+          <button type="button" class="demo-btn" data-demo-layout="center" aria-pressed="false">Centred</button>
+        </div>
+        <div class="demo-group" role="group" aria-label="Demo accent colour">
+          <span class="demo-label">Accent</span>
+          <button type="button" class="demo-swatch on" data-demo-accent="#f59e0b" style="--sw:#f59e0b" aria-pressed="true" aria-label="Amber accent"></button>
+          <button type="button" class="demo-swatch" data-demo-accent="#2dd4bf" style="--sw:#2dd4bf" aria-pressed="false" aria-label="Teal accent"></button>
+          <button type="button" class="demo-swatch" data-demo-accent="#fb7185" style="--sw:#fb7185" aria-pressed="false" aria-label="Rose accent"></button>
+        </div>
+      </div>
+
+      <div class="demo-preview">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url" id="demo-url">demo-bakery.example</span></div>
+          <div class="browser-body demo-body" id="demo-body">
+            <div class="demo-hero" id="demo-hero">
+              <h3 id="demo-headline">Fresh bread, baked at dawn.</h3>
+              <p id="demo-sub">Order today's loaf before it sells out.</p>
+              <span class="demo-cta" id="demo-cta">Order for pickup</span>
+              <div class="demo-cards"><span>Today's menu</span><span>Pickup times</span><span>Find us</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="demo-note">Demo preview — not a live client site. One headline, one button, nothing to hunt for.</p>
+        <button type="button" class="btn btn-ghost demo-code-btn" id="demo-code-btn" aria-expanded="false">See the code behind this page</button>
+        <pre class="demo-code" id="demo-code" hidden><code></code></pre>
+      </div>
+
+      <ul class="demo-proof">
+        <li><b>Design</b><span>Headline, subline and button change together — no template fill.</span></li>
+        <li><b>Code</b><span>Vanilla JavaScript, no new libraries, no images in the preview.</span></li>
+        <li><b>Speed</b><span>Built to work on a phone first, with a readable fallback if JavaScript is off.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROCESS ============ -->
 <section class="section">
   <div class="container">

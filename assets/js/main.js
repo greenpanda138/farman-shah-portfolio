@@ -200,6 +200,65 @@
   });
 })();
 
+/* ---------- Live demo (first-edition homepage only) ---------- */
+(function () {
+  "use strict";
+  var demo = document.getElementById("demo");
+  if (!demo) return;
+  var data = {
+    bakery: { url: "demo-bakery.example", headline: "Fresh bread, baked at dawn.", sub: "Order today's loaf before it sells out.", cta: "Order for pickup" },
+    barber: { url: "demo-barbershop.example", headline: "A sharp cut, no waiting.", sub: "Book your chair in under a minute.", cta: "Book a chair" },
+    gym: { url: "demo-gym.example", headline: "Stronger, one session at a time.", sub: "Your first week, planned with a coach.", cta: "Start your first week" }
+  };
+  var business = "bakery", layout = "left", accent = "#f59e0b";
+  var urlEl = document.getElementById("demo-url");
+  var hero = document.getElementById("demo-hero");
+  var headline = document.getElementById("demo-headline");
+  var sub = document.getElementById("demo-sub");
+  var cta = document.getElementById("demo-cta");
+  var codeBtn = document.getElementById("demo-code-btn");
+  var codeBlock = document.getElementById("demo-code");
+  var codeText = codeBlock.querySelector("code");
+
+  function setPressed(group, active) {
+    demo.querySelectorAll("[data-demo-" + group + "]").forEach(function (b) {
+      b.classList.toggle("on", b === active);
+      b.setAttribute("aria-pressed", b === active ? "true" : "false");
+    });
+  }
+  function render() {
+    var d = data[business];
+    urlEl.textContent = d.url;
+    headline.textContent = d.headline;
+    sub.textContent = d.sub;
+    cta.textContent = d.cta;
+    hero.classList.toggle("center", layout === "center");
+    hero.style.setProperty("--demo-accent", accent);
+    codeText.textContent =
+      '<section class="hero" style="text-align: ' + layout + '">\n' +
+      '  <h1>' + d.headline + '</h1>\n' +
+      '  <p>' + d.sub + '</p>\n' +
+      '  <a class="cta" style="background: ' + accent + '" href="#book">' + d.cta + '</a>\n' +
+      '</section>';
+  }
+  demo.querySelectorAll("[data-demo-business]").forEach(function (b) {
+    b.addEventListener("click", function () { business = b.getAttribute("data-demo-business"); setPressed("business", b); render(); });
+  });
+  demo.querySelectorAll("[data-demo-layout]").forEach(function (b) {
+    b.addEventListener("click", function () { layout = b.getAttribute("data-demo-layout"); setPressed("layout", b); render(); });
+  });
+  demo.querySelectorAll("[data-demo-accent]").forEach(function (b) {
+    b.addEventListener("click", function () { accent = b.getAttribute("data-demo-accent"); setPressed("accent", b); render(); });
+  });
+  codeBtn.addEventListener("click", function () {
+    var open = codeBlock.hasAttribute("hidden");
+    if (open) { codeBlock.removeAttribute("hidden"); } else { codeBlock.setAttribute("hidden", ""); }
+    codeBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    codeBtn.textContent = open ? "Hide the code" : "See the code behind this page";
+  });
+  render();
+})();
+
 /* ---------- 3D tilt cards ---------- */
 (function () {
   "use strict";
